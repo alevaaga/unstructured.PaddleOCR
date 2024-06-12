@@ -23,7 +23,6 @@ __dir__ = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(__dir__)
 sys.path.insert(0, os.path.abspath(os.path.join(__dir__, '..')))
 
-import yaml
 import paddle
 import paddle.distributed as dist
 
@@ -154,7 +153,7 @@ def main(config, device, logger, vdl_writer):
             AMP_RELATED_FLAGS_SETTING.update({
                 'FLAGS_cudnn_batchnorm_spatial_persistent': 1
             })
-        paddle.fluid.set_flags(AMP_RELATED_FLAGS_SETTING)
+        paddle.set_flags(AMP_RELATED_FLAGS_SETTING)
         scale_loss = config["Global"].get("scale_loss", 1.0)
         use_dynamic_loss_scaling = config["Global"].get(
             "use_dynamic_loss_scaling", False)
